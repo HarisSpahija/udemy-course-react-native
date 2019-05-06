@@ -9,6 +9,7 @@ const placeList = props => {
       key={i}
       placeName={place}
       onItemPressed={() => alert(`Item pressed - ID: ${i} Name: ${place}`)}
+      onItemLongPressed={() => props.removePlaceHandler(i)}
     />
   ));
   return <View style={styles.listContainer}>{placesOutput}</View>;

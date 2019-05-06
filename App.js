@@ -17,11 +17,20 @@ export default class App extends Component {
     });
   };
 
+  removePlaceHandler = id => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.filter((place, index) => {
+          return index !== id;
+        })
+      }
+    })
+  }
   render() {
     return (
       <View style={styles.container}>
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
-        <PlaceList places={this.state.places} />
+        <PlaceList removePlaceHandler={this.removePlaceHandler} places={this.state.places} />
       </View>
     );
   }
