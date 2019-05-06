@@ -1,45 +1,27 @@
-import React from "react";
+import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 
-import ListItem from "./src/components/ListItem/ListItem";
-import InputContainer from "./src/components/InputContainer/InputContainer";
-import ListContainer from "./src/components/ListContainer/ListContainer";
+import PlaceInput from "./src/components/PlaceInput/PlaceInput";
+import PlaceList from "./src/components/PlaceList/PlaceList";
 
-export default class App extends React.Component {
+export default class App extends Component {
   state = {
-    placeName: "",
-    places: []
+    places: ['Rotterdam', 'Munich', 'New York']
   };
 
-  placeNameChangedHandler = event => {
-    this.setState({ placeName: event });
-  };
-
-  placeSubmitHandler = () => {
-    if (this.state.placeName.trim() === "") {
-      return;
-    }
-
+  placeAddedHandler = placeName => {
     this.setState(prevState => {
       return {
-        places: prevState.places.concat(prevState.placeName)
+        places: prevState.places.concat(placeName)
       };
     });
   };
 
   render() {
-    const { placeName, places } = this.state;
-    const placesOutput = places.map((place, index) => (
-      <ListItem key={index} placeName={place} />
-    ));
     return (
       <View style={styles.container}>
-        <InputContainer
-          placeSubmitHandler={this.placeSubmitHandler}
-          placeName={placeName}
-          placeNameChangedHandler={this.placeNameChangedHandler}
-        />
-        <ListContainer placesOutput={placesOutput} />
+        <PlaceInput onPlaceAdded={this.placeAddedHandler} />
+        <PlaceList places={this.state.places} />
       </View>
     );
   }
@@ -48,7 +30,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 60,
+    padding: 40,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start"

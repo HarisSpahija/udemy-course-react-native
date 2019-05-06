@@ -1,18 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 
-const listItem = props => {
-  return (
+const listItem = props => (
+  <TouchableHighlight onPress={props.onItemPressed}>
     <View style={styles.listItem}>
       <Text>{props.placeName}</Text>
     </View>
-  );
-};
+  </TouchableHighlight>
+);
 
 const styles = StyleSheet.create({
   listItem: {
     width: "100%",
-    margin: 5,
+    marginBottom: 5,
     padding: 10,
     backgroundColor: "#eee"
   }
