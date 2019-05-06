@@ -6,7 +6,7 @@ import PlaceList from "./src/components/PlaceList/PlaceList";
 
 export default class App extends Component {
   state = {
-    places: ['Rotterdam', 'Munich', 'New York']
+    places: ["Rotterdam", "Munich", "New York"]
   };
 
   placeAddedHandler = placeName => {
@@ -23,14 +23,17 @@ export default class App extends Component {
         places: prevState.places.filter((place, index) => {
           return index !== id;
         })
-      }
-    })
-  }
+      };
+    });
+  };
   render() {
     return (
       <View style={styles.container}>
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
-        <PlaceList removePlaceHandler={this.removePlaceHandler} places={this.state.places} />
+          <PlaceList
+            removePlaceHandler={this.removePlaceHandler}
+            places={this.state.places}
+          />
       </View>
     );
   }
