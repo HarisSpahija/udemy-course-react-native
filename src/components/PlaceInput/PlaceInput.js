@@ -13,19 +13,22 @@ class PlaceInput extends Component {
   };
 
   placeSubmitHandler = () => {
-    if (this.state.placeName.trim() === "") {
+    const {placeName} = this.state;
+    const {onPlaceAdded}= this.props;
+    if (placeName.trim() === "") {
       return;
     }
 
-    this.props.onPlaceAdded(this.state.placeName);
+    onPlaceAdded(placeName);
   };
 
   render() {
+    const { placeName } = this.state
     return (
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="An awesome place"
-          value={this.state.placeName}
+          value={placeName}
           onChangeText={this.placeNameChangedHandler}
           style={styles.placeInput}
         />

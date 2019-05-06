@@ -27,12 +27,13 @@ export default class App extends Component {
     });
   };
   render() {
+    const { places } = this.state;
     return (
       <View style={styles.container}>
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
           <PlaceList
             removePlaceHandler={this.removePlaceHandler}
-            places={this.state.places}
+            places={places}
           />
       </View>
     );
