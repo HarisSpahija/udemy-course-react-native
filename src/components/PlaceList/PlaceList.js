@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 
 import ListItem from "../ListItem/ListItem";
 
@@ -13,7 +13,7 @@ const placeList = props => {
       onItemLongPressed={() => removePlaceHandler(i)}
     />
   ));
-  return <ScrollView style={styles.listContainer}>{placesOutput}</ScrollView>;
+  return <FlatList style={styles.listContainer}>{placesOutput}</FlatList>;
 };
 
 const styles = StyleSheet.create({
